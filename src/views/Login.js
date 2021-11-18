@@ -1,4 +1,9 @@
 import { useSkin } from '@hooks/useSkin'
+
+//Para usar las actiones del store de user
+import {useDispatch} from 'react-redux'
+import {handleUser} from '../redux/actions/user'
+
 import { Link, Redirect, useHistory } from 'react-router-dom'
 import GoogleLogin from 'react-google-login'
 import { Facebook, Twitter, Mail, GitHub } from 'react-feather'
@@ -7,6 +12,8 @@ import { Row, Col, CardTitle, CardText, Form, FormGroup, Label, Input, CustomInp
 import '@styles/base/pages/page-auth.scss'
 
 const Login = () => {
+
+  const dispatch = useDispatch()
   //Agregado por mi
   const history = useHistory()
 
@@ -22,6 +29,9 @@ const Login = () => {
     avatar:imageUrl
     }
     localStorage.setItem('userData', JSON.stringify(userData))
+
+    //Guardar data en store de user
+   dispatch(handleUser(userData))
     history.push('/home')
   }
 

@@ -1,47 +1,60 @@
-import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
-
+import { Card, CardHeader, CardImg, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
+import '../css/style.css'
+import caratulaJS from '../assets/images/caratula/cover_javascript.png'
+import caratulaReact from '../assets/images/caratula/react.png'
 const Home = () => {
   return (
-    <div>
+    <div className="container">
+      <div className="row">
+        <div className="col">
       <Card>
         <CardHeader>
-          <CardTitle>Kick start your project 🚀</CardTitle>
+          <CardTitle>Curso de javascript 🟡</CardTitle>
         </CardHeader>
+        <CardImg className="card-caratula" top width="100%" src={caratulaJS} alt="Card image cap" />
         <CardBody>
-          <CardText>All the best for your new project.</CardText>
+          <CardText>Fundamentos del lenguaje web</CardText>
+          <CardText>Aprende todo lo necesario para convertirte en un programador web junior y crece en la industria del desarrollo. </CardText>
           <CardText>
-            Please make sure to read our{' '}
+           Si quieres conocer más accede al{' '}
             <CardLink
               href='https://pixinvent.com/demo/vuexy-react-admin-dashboard-template/documentation/'
               target='_blank'
             >
-              Template Documentation
+              Programa del curso
             </CardLink>{' '}
-            to understand where to go from here and how to use our template.
+            y consulta lo que necesites a nuestro equipo de comunicaciones..
           </CardText>
         </CardBody>
       </Card>
 
-      <Card>
+
+        </div>
+        <div className="col">
+
+        <Card>
         <CardHeader>
-          <CardTitle>Want to integrate JWT? 🔒</CardTitle>
+          <CardTitle>Curso de Reactjs 🔵</CardTitle>
         </CardHeader>
+        <CardImg  className="card-caratula" top width="100%" src={caratulaReact} alt="Card image cap" />
         <CardBody>
+          <CardText>La librería más demandada del mercado</CardText>
+          <CardText>Aprende a utilizar la librería de javascript más popular y súmate a la lista de los mejores desarrolladores frontend. </CardText>
           <CardText>
-            We carefully crafted JWT flow so you can implement JWT with ease and with minimum efforts.
-          </CardText>
-          <CardText>
-            Please read our{' '}
+           Si quieres conocer más accede al{' '}
             <CardLink
-              href='https://pixinvent.com/demo/vuexy-react-admin-dashboard-template/documentation/development/auth'
+              href='https://pixinvent.com/demo/vuexy-react-admin-dashboard-template/documentation/'
               target='_blank'
             >
-              JWT Documentation
+              Programa del curso
             </CardLink>{' '}
-            to get more out of JWT authentication.
+            y consulta lo que necesites a nuestro equipo de comunicaciones..
           </CardText>
         </CardBody>
       </Card>
+        </div>
+      </div>
+
     </div>
   )
 }

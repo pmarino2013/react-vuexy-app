@@ -9,8 +9,10 @@ import Avatar from '@components/avatar'
 import { isUserLoggedIn } from '@utils'
 
 // ** Store & Actions
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { handleLogout } from '@store/actions/auth'
+import {clearUser} from '@store/actions/user'
+
 
 // ** Third Party Components
 import { UncontrolledDropdown, DropdownMenu, DropdownToggle, DropdownItem } from 'reactstrap'
@@ -22,13 +24,16 @@ import defaultAvatar from '@src/assets/images/portrait/small/avatar-s-13.jpg'
 const UserDropdown = () => {
   // ** Store Vars
   const dispatch = useDispatch()
+  const user = useSelector(state => state.user)
 
   // ** State
-  const [userData, setUserData] = useState({
-    username:'pmarino',
-    role:'Developer',
-    avatar:'http://1.gravatar.com/avatar/2bd6474c77fd501924adfa0aae631f57'
-  })
+  // const [userData, setUserData] = useState({
+  //   username:'pmarino',
+  //   role:'Developer',
+  //   avatar:'http://1.gravatar.com/avatar/2bd6474c77fd501924adfa0aae631f57'
+  // })
+  const [userData, setUserData] = useState(user)
+
 
   //** ComponentDidMount
   useEffect(() => {
@@ -66,7 +71,11 @@ const UserDropdown = () => {
           <MessageSquare size={14} className='mr-75' />
           <span className='align-middle'>Chats</span>
         </DropdownItem>
-        <DropdownItem tag={Link} to='/login' onClick={() => dispatch(handleLogout())}>
+        <DropdownItem tag={Link} to='/login' onClick={() => {
+          dispatch(handleLogout())
+          dispatch(clearUser())
+
+        } }>
           <Power size={14} className='mr-75' />
           <span className='align-middle'>Logout</span>
         </DropdownItem>

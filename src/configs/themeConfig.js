@@ -3,8 +3,9 @@
 //Template config options
 const themeConfig = {
   app: {
-    appName: 'Vuexy',
-    appLogoImage: require('@src/assets/images/logo/logo.svg').default
+    appName: 'CoderSchool',
+    // appLogoImage: require('@src/assets/images/logo/logo.svg').default
+    appLogoImage: require('@src/assets/images/logo/loguito.png').default
   },
   layout: {
     isRTL: false,
