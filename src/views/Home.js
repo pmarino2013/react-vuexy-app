@@ -1,8 +1,17 @@
+
+import {getCourses} from '../helpers/courseFetch'
 import { Card, CardHeader, CardImg, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
 import '../css/style.css'
 import caratulaJS from '../assets/images/caratula/cover_javascript.png'
 import caratulaReact from '../assets/images/caratula/react.png'
+import { useEffect } from 'react'
 const Home = () => {
+
+  useEffect(() => {
+    getCourses().then(respuesta => {
+      console.log(respuesta)
+    })
+  }, [])
   return (
     <div className="container">
       <div className="row">
