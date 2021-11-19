@@ -1,21 +1,52 @@
+import { useEffect, useState } from 'react'
 
 import {getCourses} from '../helpers/courseFetch'
 import { Card, CardHeader, CardImg, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
 import '../css/style.css'
-import caratulaJS from '../assets/images/caratula/cover_javascript.png'
-import caratulaReact from '../assets/images/caratula/react.png'
-import { useEffect } from 'react'
+// import caratulaJS from '../assets/images/caratula/cover_javascript.png'
+// import caratulaReact from '../assets/images/caratula/react.png'
 const Home = () => {
+
+  const [cursos, setCursos] = useState({
+    datos:[],
+    loading:true
+  })
 
   useEffect(() => {
     getCourses().then(respuesta => {
-      console.log(respuesta)
+      // console.log(respuesta)
+      setCursos({
+        datos:respuesta,
+        loading:false
+      })
     })
   }, [])
   return (
     <div className="container">
       <div className="row">
-        <div className="col">
+      {cursos.loading ? <h3>Cargando...</h3> : cursos.datos.map((curso, index) => (
+
+          <div className="col-12 col-md-4 my-2" key = {index}>
+      <Card className="h-100">
+        <CardHeader>
+          <CardTitle>{curso.title}</CardTitle>
+        </CardHeader>
+        <CardImg className="card-caratula" top width="100%" src={curso.thumbnail} alt="Card image cap" />
+        <CardBody>
+          <CardText>{curso.category[0]}</CardText>
+          <CardText>{curso.description}</CardText>
+          <CardText>
+         
+           {curso.original_price}
+          </CardText>
+        </CardBody>
+      </Card>
+
+
+        </div>
+        ))
+      }
+        {/* <div className="col">
       <Card>
         <CardHeader>
           <CardTitle>Curso de javascript 🟡</CardTitle>
@@ -61,7 +92,7 @@ const Home = () => {
           </CardText>
         </CardBody>
       </Card>
-        </div>
+        </div> */}
       </div>
 
     </div>
