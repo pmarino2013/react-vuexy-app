@@ -1,0 +1,12 @@
+.card-caratula{
+    height: 245px;
+    object-fit: cover;
+}
+
+.card-users{
+    
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    object-fit: cover;
+}

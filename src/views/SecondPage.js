@@ -1,19 +1,52 @@
-import { Card, CardHeader, CardBody, CardTitle, CardText, CardLink } from 'reactstrap'
+import { useEffect, useState } from 'react'
+import {getUsers} from '../helpers/userFetch'
+import { Card, CardHeader, CardBody, CardTitle, CardText, Alert, CardImg, CardLink } from 'reactstrap'
+import '../css/style.css'
+
 
 const SecondPage = () => {
+const [users, setUsers] = useState({
+  usuarios:[],
+  loading:true
+})
+
+useEffect(() => {
+ getUsers().then(respuesta => {
+console.log(respuesta)
+setUsers({
+  usuarios:respuesta,
+  loading:false
+})
+ })
+}, [])
+
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Create Awesome 🙌</CardTitle>
-      </CardHeader>
-      <CardBody>
-        <CardText>This is your second page.</CardText>
-        <CardText>
-          Chocolate sesame snaps pie carrot cake pastry pie lollipop muffin. Carrot cake dragée chupa chups jujubes.
-          Macaroon liquorice cookie wafer tart marzipan bonbon. Gingerbread jelly-o dragée chocolate.
-        </CardText>
-      </CardBody>
-    </Card>
+    <div className="container">
+      <div className="row">
+       {users.usuarios.map(user => (
+        <div className="col-12 col-md-4 my-2" key={user.id}>
+          <Card >
+          <CardHeader>
+          <CardTitle>{user.first_name} 🙌</CardTitle>
+          </CardHeader>
+          <div className="d-flex justify-content-center">
+
+          <CardImg className="card-users" top src={user.avatar} alt={user.first_name} />
+          </div>
+          <CardBody className="d-flex">
+          <CardText>{user.email}</CardText>
+          <CardText>
+            
+          </CardText>
+          </CardBody>
+          </Card>
+          </div>
+
+       ))}
+               
+      </div>
+    </div>
+    
   )
 }
 
